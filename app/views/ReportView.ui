@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ReportsView</class>
+ <widget class="QWidget" name="ReportsView">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1000</width>
+    <height>700</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Informes</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="spacing">
+    <number>20</number>
+   </property>
+   <property name="leftMargin">
+    <number>40</number>
+   </property>
+   <property name="topMargin">
+    <number>40</number>
+   </property>
+   <property name="rightMargin">
+    <number>40</number>
+   </property>
+   <property name="bottomMargin">
+    <number>40</number>
+   </property>
+   <item>
+    <widget class="QLabel" name="label_title">
+     <property name="styleSheet">
+      <string notr="true">font-size: 28px; font-weight: bold; color: white; margin-bottom: 20px;</string>
+     </property>
+     <property name="text">
+      <string>Resumen del Informe a Generar</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QGridLayout" name="gridLayout_stats">
+     <property name="spacing">
+      <number>20</number>
+     </property>
+     <item row="0" column="0">
+      <widget class="QFrame" name="card_players">
+       <property name="styleSheet">
+        <string notr="true">QFrame { background-color: #333; border-radius: 10px; border: 1px solid #444; }
+QLabel { border: none; background: transparent; }</string>
+       </property>
+       <layout class="QVBoxLayout" name="vbox_1">
+        <item>
+         <widget class="QLabel" name="lbl_monedas_va">
+          <property name="styleSheet">
+           <string>color: #aaa; font-size: 14px; font-weight: bold;</string>
+          </property>
+          <property name="text">
+           <string>MONEDAS ACTUALES</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="lbl_monedas">
+          <property name="styleSheet">
+           <string>color: #00E5FF; font-size: 36px; font-weight: bold;</string>
+          </property>
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:27pt; color:#55ffff;&quot;&gt;1,245&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QFrame" name="card_record">
+       <property name="styleSheet">
+        <string notr="true">QFrame { background-color: #333; border-radius: 10px; border: 1px solid #444; }
+QLabel { border: none; background: transparent; }</string>
+       </property>
+       <layout class="QVBoxLayout" name="vbox_2">
+        <item>
+         <widget class="QLabel" name="lbl_recordva">
+          <property name="styleSheet">
+           <string>color: #aaa; font-size: 14px; font-weight: bold;</string>
+          </property>
+          <property name="text">
+           <string>RÉCORD MAXIMO</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="lbl_record">
+          <property name="styleSheet">
+           <string>color: #FFD700; font-size: 36px; font-weight: bold;</string>
+          </property>
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:27pt; color:#55ffff;&quot;&gt;9999&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QFrame" name="card_games">
+       <property name="styleSheet">
+        <string notr="true">QFrame { background-color: #333; border-radius: 10px; border: 1px solid #444; }
+QLabel { border: none; background: transparent; }</string>
+       </property>
+       <layout class="QVBoxLayout" name="vbox_3">
+        <item>
+         <widget class="QLabel" name="lbl_partidasva">
+          <property name="styleSheet">
+           <string>color: #aaa; font-size: 14px; font-weight: bold;</string>
+          </property>
+          <property name="text">
+           <string>PARTIDAS JUGADAS</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="lbl_partidas">
+          <property name="styleSheet">
+           <string>color: white; font-size: 36px; font-weight: bold;</string>
+          </property>
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:27pt; color:#ffaa00;&quot;&gt;8,530&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QFrame" name="card_jumps">
+       <property name="styleSheet">
+        <string notr="true">QFrame { background-color: #333; border-radius: 10px; border: 1px solid #444; }
+QLabel { border: none; background: transparent; }</string>
+       </property>
+       <layout class="QVBoxLayout" name="vbox_4">
+        <item>
+         <widget class="QLabel" name="lbl_saltosva">
+          <property name="styleSheet">
+           <string>color: #aaa; font-size: 14px; font-weight: bold;</string>
+          </property>
+          <property name="text">
+           <string>SALTOS TOTALES</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="lbl_saltos">
+          <property name="styleSheet">
+           <string>color: #ff6666; font-size: 36px; font-weight: bold;</string>
+          </property>
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:27pt; color:#ffaa00;&quot;&gt;120,400&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Orientation::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item>
+    <widget class="QPushButton" name="btn_generate_pdf">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>60</height>
+      </size>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">
+        background-color: #e0e0e0; 
+        color: #1a1a1a; 
+        font-size: 16px; 
+        font-weight: bold; 
+        border-radius: 8px;
+        border: 1px solid #ccc;
+      </string>
+     </property>
+     <property name="text">
+      <string>Imprimir Informe PDF</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

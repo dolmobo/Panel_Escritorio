@@ -1,28 +1,28 @@
 import requests
 import firebase_admin
 from firebase_admin import credentials, db
+import os
 
 class AuthService:
     def __init__(self):
-        # ================= CONFIGURACIÓN =================
-        # 1. Pega aquí tu API KEY WEB (La larga que empieza por AIza...)
+        # Asegúrate de que tu API KEY es correcta
         self.api_key = "AIzaSyDTMoade-YjI8ooxj9gqgNcHEup_fHiLf8"
-        
-        # 2. Pega aquí la URL de tu base de datos (https://... .firebasedatabase.app/)
         self.db_url = "https://cybersprint-tfg-default-rtdb.europe-west1.firebasedatabase.app"
         
-        # 3. Nombre del archivo json que descargaste
-        self.cred_file = "firebase_key.json"
-        # =================================================
-
-        # Iniciamos Firebase solo si no está iniciado ya
+        # Ruta dinámica al archivo de credenciales para evitar errores de ruta
+        base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+        self.cred_file = os.path.join(base_dir, "serviceAccountKey.json")
+        
         if not firebase_admin._apps:
             try:
-                cred = credentials.Certificate(self.cred_file)
-                firebase_admin.initialize_app(cred, {
-                    'databaseURL': self.db_url
-                })
-                print("Firebase iniciado correctamente.")
+                if os.path.exists(self.cred_file):
+                    cred = credentials.Certificate(self.cred_file)
+                    firebase_admin.initialize_app(cred, {
+                        'databaseURL': self.db_url
+                    })
+                    print("Firebase iniciado correctamente.")
+                else:
+                    print(f"Error: No se encuentra el archivo {self.cred_file}")
             except Exception as e:
                 print(f"Error iniciando Firebase: {e}")
 
@@ -31,10 +31,9 @@ class AuthService:
     def login(self, email, password):
         """
         Envía email y contraseña a Google.
-        Devuelve: (True, ID_USUARIO) si sale bien
+        Devuelve: (UID, NOMBRE_USUARIO) si sale bien <-- CAMBIO IMPORTANTE
                   (False, MENSAJE_ERROR) si sale mal
         """
-        # Endpoint oficial de Google Identity Toolkit para login con email/pass
         request_url = f"https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key={self.api_key}"
         
         payload = {
@@ -44,33 +43,23 @@ class AuthService:
         }
 
         try:
-            # Hacemos la petición web (como si fuera un navegador)
             response = requests.post(request_url, json=payload)
             data = response.json()
 
-            # Verificamos si Google nos dio un error
             if "error" in data:
                 mensaje = data["error"]["message"]
                 print(f"Error Login: {mensaje}")
                 return False, mensaje
             
-            # ¡Login correcto! Guardamos el ID
+            # Guardamos el ID interno de Firebase
             self.current_user_id = data["localId"]
-            return True, self.current_user_id
+            
+            # Parseamos el nombre del email
+            username = email.split('@')[0]
+            username_bonito = username.capitalize()
+            
+            return self.current_user_id, username_bonito
 
         except Exception as e:
             print(f"Error de conexión: {e}")
             return False, str(e)
-
-    def obtener_datos_usuario(self):
-        """
-        Descarga el récord y las monedas del usuario logueado actualmente.
-        """
-        if self.current_user_id:
-            try:
-                # Vamos a la carpeta 'jugadores' y buscamos por el ID
-                ref = db.reference(f'jugadores/{self.current_user_id}')
-                return ref.get()
-            except Exception as e:
-                print(f"Error leyendo base de datos: {e}")
-        return None

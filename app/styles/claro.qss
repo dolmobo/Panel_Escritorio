@@ -1,0 +1,202 @@
+/* =======================================================
+   1. RESET GLOBAL Y FONDO PRINCIPAL
+   ======================================================= */
+* {
+    outline: none;
+    color: #333333; /* Gris muy oscuro, no negro puro */
+}
+
+QWidget {
+    background-color: #f0f2f5; /* Gris muy suave, casi blanco */
+    font-family: "Segoe UI", sans-serif;
+    font-size: 14px;
+}
+
+/* Las páginas internas heredan este fondo suave */
+QStackedWidget, #page_dashboard, #page_reports, #page_settings {
+    background-color: #f0f2f5;
+}
+
+/* =======================================================
+   2. MENÚ LATERAL (SIDEBAR)
+   ======================================================= */
+#frame_menu {
+    background-color: #ffffff; /* El menú sí lo dejamos blanco para destacar */
+    border-right: 1px solid #dcdcdc;
+    min-width: 200px;
+}
+
+/* Botones del menú lateral */
+#frame_menu QPushButton {
+    background-color: transparent;
+    border: none;
+    border-radius: 8px; /* Bordes un poco redondeados */
+    color: #666666; /* Gris medio */
+    text-align: left;
+    padding: 12px 20px;
+    margin: 4px 8px; /* Un poco de margen para que no peguen a los bordes */
+    font-weight: 600;
+}
+
+/* Hover suave: Azul pastel muy claro */
+#frame_menu QPushButton:hover {
+    background-color: #e6f0ff; 
+    color: #0056b3; /* Azul profesional */
+}
+
+#frame_menu QPushButton:pressed {
+    background-color: #cce0ff;
+}
+
+/* =======================================================
+   3. TABLAS (DASHBOARD)
+   ======================================================= */
+QTableWidget {
+    background-color: #ffffff;
+    gridline-color: #eeeeee;
+    color: #333333;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    selection-background-color: #4da6ff; /* Azul cielo suave */
+    selection-color: #ffffff;
+}
+
+/* Cabecera */
+QHeaderView::section {
+    background-color: #f8f9fa; /* Gris casi blanco */
+    color: #555555;
+    padding: 12px;
+    border: none;
+    border-bottom: 2px solid #eeeeee;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
+/* Celdas */
+QTableWidget::item {
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 8px;
+    padding-right: 8px;
+    border-bottom: 1px solid #f0f0f0;
+    background-color: #ffffff;
+    color: #333333;
+}
+
+QTableWidget::item:hover {
+    background-color: #f0f8ff; /* Azul alice (muy pálido) */
+    color: #000000;
+}
+
+/* =======================================================
+   4. ELEMENTOS DE FORMULARIO
+   ======================================================= */
+QLabel {
+    color: #444444;
+}
+
+#label_title, #lbl_user_welcome {
+    color: #2c3e50; /* Azul oscuro casi gris (Midnight Blue) */
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Inputs */
+QLineEdit, QComboBox {
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 6px;
+    padding: 8px;
+    color: #333333;
+}
+
+QLineEdit:focus, QComboBox:focus {
+    border: 1px solid #4da6ff;
+    background-color: #ffffff;
+}
+
+/* Botones Principales (Verde/Azul Suave) */
+#btn_generate_pdf, #btn_refresh, #btn_apply, #btn_login {
+    background-color: #007bff; /* Azul Bootstrap estándar */
+    color: #ffffff;
+    border-radius: 6px;
+    padding: 10px;
+    font-weight: bold;
+    border: none;
+}
+
+#btn_generate_pdf:hover, #btn_refresh:hover, #btn_apply:hover {
+    background-color: #0069d9; /* Un poco más oscuro al pasar ratón */
+}
+
+/* Botones Secundarios */
+#btn_exit {
+    color: #d9534f; /* Rojo suave */
+    background: transparent;
+    border: 1px solid #d9534f;
+    border-radius: 6px;
+}
+#btn_exit:hover {
+    background-color: #fdf2f2;
+}
+
+/* =======================================================
+   5. SCROLLBAR
+   ======================================================= */
+QScrollBar:vertical {
+    border: none;
+    background: #f0f2f5;
+    width: 10px;
+    margin: 0px;
+}
+QScrollBar::handle:vertical {
+    background: #d1d1d1;
+    min-height: 20px;
+    border-radius: 5px;
+}
+QScrollBar::handle:vertical:hover {
+    background: #b0b0b0;
+}
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+    height: 0px;
+}
+
+/* =======================================================
+   ESTADÍSTICAS (REPORTES) - MODO SOFT LIGHT
+   ======================================================= */
+
+/* 1. LOS VALORES (El número grande) */
+#lbl_monedas, #lbl_record, #lbl_partidas, #lbl_saltos {
+    background-color: #ffffff;
+    color: #2c3e50;               /* Azul oscuro elegante */
+    font-family: "Segoe UI", sans-serif;
+    font-size: 42px;
+    font-weight: bold;
+    border: 1px solid #e0e0e0;
+    border-bottom: 4px solid #4da6ff; /* Borde inferior azul suave */
+    border-radius: 12px;
+    padding: 15px;
+    qproperty-alignment: AlignCenter;
+}
+
+/* Efecto Hover */
+#lbl_monedas:hover, #lbl_record:hover, #lbl_partidas:hover, #lbl_saltos:hover {
+    background-color: #fcfcfc;
+    border-color: #4da6ff;
+}
+
+/* 2. LOS TÍTULOS */
+#page_reports QLabel { 
+    font-size: 13px;
+    color: #777777;               /* Gris suave */
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+#label_title {
+    font-size: 24px;
+    color: #2c3e50;
+    border: none;
+    background: transparent;
+}

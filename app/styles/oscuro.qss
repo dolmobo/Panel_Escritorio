@@ -1,0 +1,164 @@
+/* =======================================================
+   RESET GLOBAL - MODO OSCURO
+   ======================================================= */
+* {
+    outline: none;
+    color: #e0e0e0; /* Texto claro por defecto */
+}
+
+QWidget {
+    background-color: #121212;
+    color: #e0e0e0;
+    font-family: "Segoe UI", sans-serif;
+    font-size: 14px;
+}
+
+QStackedWidget, #page_dashboard, #page_reports, #page_settings {
+    background-color: #121212;
+}
+
+/* =======================================================
+   MENÚ LATERAL (Negro Profundo)
+   ======================================================= */
+#frame_menu {
+    background-color: #0a0a0a;
+    border-right: 1px solid #333333;
+    min-width: 200px;
+}
+
+#frame_menu QPushButton {
+    background-color: transparent;
+    border: none;
+    color: #888888;
+    text-align: left;
+    padding: 15px 20px;
+    font-weight: 600;
+}
+
+#frame_menu QPushButton:hover {
+    background-color: #1a1a1a;
+    color: #00e5ff; /* Cian Neón */
+    border-left: 3px solid #00e5ff;
+}
+
+/* =======================================================
+   TABLAS (BLINDAJE CONTRA EL BLANCO)
+   ======================================================= */
+QTableWidget {
+    background-color: #1a1a1a;
+    gridline-color: #333333;
+    color: #ffffff;
+    border: 1px solid #333333;
+    selection-background-color: #00e5ff;
+    selection-color: #000000;
+}
+
+/* Cabeceras */
+QHeaderView::section {
+    background-color: #252525;
+    color: #00e5ff;
+    padding: 8px;
+    border: none;
+    border-bottom: 2px solid #00e5ff;
+    font-weight: bold;
+}
+
+/* Celdas individuales - IMPORTANTE PARA EVITAR FILAS BLANCAS */
+QTableWidget::item {
+    background-color: #1a1a1a; /* Forzamos fondo oscuro */
+    color: #ffffff; /* Forzamos texto blanco */
+    border-bottom: 1px solid #252525;
+    padding: 5px;
+}
+
+/* Hover en celdas */
+QTableWidget::item:hover {
+    background-color: #2a2a2a;
+    color: #ffffff;
+}
+
+/* Selección */
+QTableWidget::item:selected {
+    background-color: #00e5ff;
+    color: #000000;
+}
+
+/* =======================================================
+   RESTO DE ELEMENTOS
+   ======================================================= */
+QLabel {
+    color: #e0e0e0;
+}
+
+#label_title, #lbl_user_welcome {
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+QLineEdit, QComboBox {
+    background-color: #252525;
+    border: 1px solid #444444;
+    border-radius: 5px;
+    padding: 8px;
+    color: #ffffff;
+}
+
+QLineEdit:focus, QComboBox:focus {
+    border: 1px solid #00e5ff;
+}
+
+/* Botones de acción */
+#btn_generate_pdf, #btn_refresh, #btn_apply, #btn_login {
+    background-color: #00e5ff;
+    color: #000000;
+    border-radius: 5px;
+    padding: 10px;
+    font-weight: bold;
+    border: none;
+}
+
+#btn_generate_pdf:hover, #btn_refresh:hover, #btn_apply:hover {
+    background-color: #00b8cc;
+}
+
+/* =======================================================
+   ESTADÍSTICAS (REPORTES) - MODO OSCURO
+   ======================================================= */
+
+/* 1. LOS VALORES (El número grande) */
+#lbl_monedas, #lbl_record, #lbl_partidas, #lbl_saltos {
+    background-color: #1a1a1a;    /* Fondo de tarjeta oscuro */
+    color: #00e5ff;               /* Color Cian Neón */
+    font-family: "Segoe UI", sans-serif;
+    font-size: 42px;              /* Texto Gigante */
+    font-weight: bold;
+    border: 1px solid #333333;    /* Borde sutil */
+    border-radius: 12px;          /* Bordes redondeados */
+    padding: 15px;                /* Espacio interior */
+    qproperty-alignment: AlignCenter; /* Centrar texto */
+}
+
+/* Efecto al pasar el ratón por encima del número */
+#lbl_monedas:hover, #lbl_record:hover, #lbl_partidas:hover, #lbl_saltos:hover {
+    border: 1px solid #00e5ff;    /* El borde brilla en cian */
+    background-color: #222222;
+}
+
+/* 2. LOS TÍTULOS (La etiqueta que dice "Monedas:", etc.) */
+/* Nota: Asegúrate de que estos labels tengan un nombre o ataca a todos los labels del frame */
+#page_reports QLabel { 
+    font-size: 14px;
+    color: #aaaaaa;               /* Color gris suave para no distraer */
+    font-weight: 600;
+    text-transform: uppercase;    /* Mayúsculas elegantes */
+    letter-spacing: 1px;
+}
+
+/* Excepción: Los títulos grandes no se tocan con la regla anterior */
+#label_title {
+    font-size: 24px;
+    color: #ffffff;
+    border: none;
+    background: transparent;
+}
