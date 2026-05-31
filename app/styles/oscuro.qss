@@ -68,7 +68,7 @@ QTableWidget::item {
     background-color: #1a1a1a; /* Forzamos fondo oscuro */
     color: #ffffff; /* Forzamos texto blanco */
     border-bottom: 1px solid #252525;
-    padding: 5px;
+    padding: 8px;
 }
 
 /* Hover en celdas */

@@ -1,5 +1,7 @@
 from PySide6.QtWidgets import QWidget, QTableWidgetItem, QFileDialog, QMessageBox
 from PySide6.QtCore import Qt
+from translations import TRADUCCIONES
+from app.services.SettingsService import SettingsService
 
 # Imports
 from app.services.report_generator import ReportService
@@ -40,6 +42,7 @@ class PanelController(QWidget):
     def rellenar_widget(self, tabla, filas):
         tabla.setRowCount(0)
         tabla.setRowCount(len(filas))
+        tabla.verticalHeader().setMinimumSectionSize(40)  # Altura mínima de fila
         for i, d in enumerate(filas):
             item_nombre = QTableWidgetItem(str(d["nombre"]))
             item_nombre.setData(Qt.UserRole, d) 
@@ -48,6 +51,7 @@ class PanelController(QWidget):
             val = QTableWidgetItem(str(d["valor"]))
             val.setTextAlignment(Qt.AlignCenter)
             tabla.setItem(i, 1, val)
+            tabla.setRowHeight(i, 40)  # Altura explícita para cada fila
 
     def al_doble_clic_score(self, row, col):
         self.abrir_popup(self.ui.table_score, row)
@@ -77,13 +81,23 @@ class PanelController(QWidget):
 
     def _generar_pdf(self, default_name, titulo, col_name, datos):
         if not datos:
-            QMessageBox.warning(self.main, "Aviso", "No hay datos para exportar.")
+            settings = SettingsService()
+            current_lang = settings.state.get("language", "Español")
+            t = TRADUCCIONES.get(current_lang, TRADUCCIONES["Español"])
+            QMessageBox.warning(self.main, t["warning_title"], t["no_data_export"])
             return
 
         path, _ = QFileDialog.getSaveFileName(self.main, "Guardar Ranking PDF", default_name, "Archivos PDF (*.pdf)")
         if path:
             try:
+                settings = SettingsService()
+                current_lang = settings.state.get("language", "Español")
+                t = TRADUCCIONES.get(current_lang, TRADUCCIONES["Español"])
+                
                 ReportService.generar_informe_ranking(path, titulo, col_name, datos)
-                QMessageBox.information(self.main, "Éxito", "Ranking exportado correctamente.")
+                QMessageBox.information(self.main, t["success_title"], t["export_success"])
             except Exception as e:
-                QMessageBox.critical(self.main, "Error", f"No se pudo generar el PDF:\n{e}")
+                settings = SettingsService()
+                current_lang = settings.state.get("language", "Español")
+                t = TRADUCCIONES.get(current_lang, TRADUCCIONES["Español"])
+                QMessageBox.critical(self.main, t["error_title"], t["pdf_error"].format(error=str(e)))

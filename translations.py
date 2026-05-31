@@ -38,7 +38,31 @@ TRADUCCIONES = {
         # --- AJUSTES ---
         "set_title": "CONFIGURACIÓN DEL SISTEMA",
         "set_theme_lbl": "Apariencia Visual:",
-        "set_lang_lbl": "Idioma / Language:"
+        "set_lang_lbl": "Idioma / Language:",
+        
+        # --- MENSAJES DE DIÁLOGO ---
+        "logout_title": "Salir",
+        "logout_confirm": "¿Cerrar sesión?",
+        "warning_title": "Aviso",
+        "no_data_export": "No hay datos para exportar.",
+        "success_title": "Éxito",
+        "export_success": "Ranking exportado correctamente.",
+        "error_title": "Error",
+        "pdf_error": "No se pudo generar el PDF:\n{error}",
+        "user_data_error": "No se pudieron cargar los datos del usuario.",
+        "report_success": "Informe generado correctamente.",
+        "report_error": "Error al generar el PDF:\n{error}",
+        
+        # --- BOTONES EXPORTAR ---
+        "export_top_score": "Exportar TOP Puntuación",
+        "export_top_active": "Exportar TOP Activos",
+        "export_top_jumps": "Exportar TOP Saltos",
+        
+        # --- TEMAS E IDIOMAS ---
+        "theme_light": "Claro",
+        "theme_dark": "Oscuro",
+        "lang_es": "Español",
+        "lang_en": "Inglés"
     },
     "Inglés": {
         # --- LOGIN ---
@@ -78,6 +102,30 @@ TRADUCCIONES = {
         # --- SETTINGS ---
         "set_title": "SYSTEM SETTINGS",
         "set_theme_lbl": "Visual Theme:",
-        "set_lang_lbl": "Language / Idioma:"
+        "set_lang_lbl": "Language / Idioma:",
+        
+        # --- DIALOG MESSAGES ---
+        "logout_title": "Logout",
+        "logout_confirm": "Close session?",
+        "warning_title": "Warning",
+        "no_data_export": "No data to export.",
+        "success_title": "Success",
+        "export_success": "Ranking exported successfully.",
+        "error_title": "Error",
+        "pdf_error": "Could not generate PDF:\n{error}",
+        "user_data_error": "Could not load user data.",
+        "report_success": "Report generated successfully.",
+        "report_error": "Error generating PDF:\n{error}",
+        
+        # --- EXPORT BUTTONS ---
+        "export_top_score": "Export TOP Score",
+        "export_top_active": "Export TOP Active",
+        "export_top_jumps": "Export TOP Jumps",
+        
+        # --- THEMES AND LANGUAGES ---
+        "theme_light": "Light",
+        "theme_dark": "Dark",
+        "lang_es": "Spanish",
+        "lang_en": "English"
     }
 }

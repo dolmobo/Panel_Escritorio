@@ -9,6 +9,7 @@ from app.views.ReportView_ui import Ui_ReportsView
 from app.views.SettingView_ui import Ui_SettingsView
 
 from app.services.DataService import DataService
+from translations import TRADUCCIONES
 
 from app.controller.PanelController import PanelController 
 from app.controller.ReportController import ReportController
@@ -70,7 +71,13 @@ class MainController(QMainWindow):
 
     def manejar_logout(self):
         from app.controller.LoginController import LoginController
-        if QMessageBox.question(self, "Salir", "¿Cerrar sesión?") == QMessageBox.StandardButton.Yes:
+        from app.services.SettingsService import SettingsService
+        
+        settings = SettingsService()
+        current_lang = settings.state.get("language", "Español")
+        t = TRADUCCIONES.get(current_lang, TRADUCCIONES["Español"])
+        
+        if QMessageBox.question(self, t["logout_title"], t["logout_confirm"]) == QMessageBox.StandardButton.Yes:
             self.login_win = LoginController()
             self.login_win.show()
             self.close()

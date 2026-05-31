@@ -12,7 +12,7 @@ class SettingsController:
         # Carga inicial
         self.aplicar_ajustes_completos()
         
-        # Conexiones
+        # Conexiones (DESPUÉS de la carga inicial)
         self.ui.combo_theme.currentIndexChanged.connect(self.guardar_y_actualizar)
         self.ui.combo_language.currentIndexChanged.connect(self.guardar_y_actualizar)
 
@@ -33,9 +33,18 @@ class SettingsController:
         # 4. Traducir UI
         self.retraducir_ui(idioma)
 
-        # 5. Sincronizar combos
-        self.ui.combo_theme.setCurrentText(tema)
-        self.ui.combo_language.setCurrentText(idioma)
+        # 5. Sincronizar combos usando índices (sin disparar signals)
+        self.ui.combo_theme.blockSignals(True)
+        self.ui.combo_language.blockSignals(True)
+        
+        tema_index = 0 if tema == "Claro" else 1
+        idioma_index = 0 if idioma == "Español" else 1
+        
+        self.ui.combo_theme.setCurrentIndex(tema_index)
+        self.ui.combo_language.setCurrentIndex(idioma_index)
+        
+        self.ui.combo_theme.blockSignals(False)
+        self.ui.combo_language.blockSignals(False)
 
     def retraducir_ui(self, idioma):
         """Traduce la interfaz directamente sin chequeos redundantes"""
@@ -69,6 +78,11 @@ class SettingsController:
         # Tabla Saltos
         ui_dash.table_jumps.horizontalHeaderItem(0).setText(t["col_player"])
         ui_dash.table_jumps.horizontalHeaderItem(1).setText(t["col_jumps"])
+        
+        # Botones de Exportar
+        ui_dash.btnTOPPuntuacion.setText(t["export_top_score"])
+        ui_dash.btnTOPActivos.setText(t["export_top_active"])
+        ui_dash.btnTOPSaltos.setText(t["export_top_jumps"])
 
         # --- 3. REPORTS VIEW ---
         ui_rep = self.main.ui_reports
@@ -86,6 +100,12 @@ class SettingsController:
         ui_set.label_title.setText(t["set_title"])
         ui_set.label_theme.setText(t["set_theme_lbl"])
         ui_set.label_lang.setText(t["set_lang_lbl"])
+        
+        # Temas e Idiomas
+        ui_set.combo_theme.setItemText(0, t["theme_light"])
+        ui_set.combo_theme.setItemText(1, t["theme_dark"])
+        ui_set.combo_language.setItemText(0, t["lang_es"])
+        ui_set.combo_language.setItemText(1, t["lang_en"])
 
     def limpiar_estilos_recursivo(self, widget):
         widget.setStyleSheet("")
@@ -94,8 +114,12 @@ class SettingsController:
             child.setStyleSheet("")
 
     def guardar_y_actualizar(self):
-        self.service.save(
-            self.ui.combo_theme.currentText(),
-            self.ui.combo_language.currentText()
-        )
+        # Mapear índices a valores reales
+        tema_map = {0: "Claro", 1: "Oscuro"}
+        idioma_map = {0: "Español", 1: "Inglés"}
+        
+        tema = tema_map.get(self.ui.combo_theme.currentIndex(), "Claro")
+        idioma = idioma_map.get(self.ui.combo_language.currentIndex(), "Español")
+        
+        self.service.save(tema, idioma)
         self.aplicar_ajustes_completos()

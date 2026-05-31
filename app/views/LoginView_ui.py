@@ -22,9 +22,9 @@ class Ui_LoginView(object):
     def setupUi(self, LoginView):
         if not LoginView.objectName():
             LoginView.setObjectName(u"LoginView")
-        LoginView.resize(450, 380)
-        LoginView.setMinimumSize(QSize(450, 380))
-        LoginView.setMaximumSize(QSize(450, 380))
+        LoginView.resize(450, 320)
+        LoginView.setMinimumSize(QSize(450, 320))
+        LoginView.setMaximumSize(QSize(450, 320))
         self.verticalLayout = QVBoxLayout(LoginView)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.verticalLayout.setContentsMargins(50, 40, 50, 40)
@@ -34,13 +34,17 @@ class Ui_LoginView(object):
 
         self.verticalLayout.addWidget(self.label_title)
 
+        self.verticalSpacer_title = QSpacerItem(20, 20, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Minimum)
+
+        self.verticalLayout.addItem(self.verticalSpacer_title)
+
         self.input_user = QLineEdit(LoginView)
         self.input_user.setObjectName(u"input_user")
         self.input_user.setMinimumSize(QSize(0, 45))
 
         self.verticalLayout.addWidget(self.input_user)
 
-        self.verticalSpacer_2 = QSpacerItem(20, 15, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+        self.verticalSpacer_2 = QSpacerItem(20, 5, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Minimum)
 
         self.verticalLayout.addItem(self.verticalSpacer_2)
 
@@ -58,7 +62,7 @@ class Ui_LoginView(object):
 
         self.verticalLayout.addWidget(self.lbl_error)
 
-        self.verticalSpacer = QSpacerItem(20, 20, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+        self.verticalSpacer = QSpacerItem(20, 10, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
         self.verticalLayout.addItem(self.verticalSpacer)
 

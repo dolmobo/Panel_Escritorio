@@ -1,4 +1,6 @@
 from PySide6.QtWidgets import QWidget, QFileDialog, QMessageBox
+from translations import TRADUCCIONES
+from app.services.SettingsService import SettingsService
 from app.views.ReportView_ui import Ui_ReportsView
 from app.services.report_generator import ReportService
 
@@ -32,8 +34,12 @@ class ReportController(QWidget):
         # 1. Obtenemos datos del usuario actual
         datos_usuario = self.main.data_service.obtener_usuario_por_id(self.main.user_id)
         
+        settings = SettingsService()
+        current_lang = settings.state.get("language", "Español")
+        t = TRADUCCIONES.get(current_lang, TRADUCCIONES["Español"])
+        
         if not datos_usuario:
-            QMessageBox.warning(self.main, "Error", "No se pudieron cargar los datos del usuario.")
+            QMessageBox.warning(self.main, t["error_title"], t["user_data_error"])
             return
 
         # 2. Obtenemos los promedios globales para la comparativa
@@ -51,6 +57,6 @@ class ReportController(QWidget):
             try:
                 # 4. Pasamos todo al generador
                 ReportService.generar_informe_perfil(path, datos_usuario, promedios)
-                QMessageBox.information(self.main, "Éxito", "Informe generado correctamente.")
+                QMessageBox.information(self.main, t["success_title"], t["report_success"])
             except Exception as e:
-                QMessageBox.critical(self.main, "Error", f"Error al generar el PDF:\n{e}")
+                QMessageBox.critical(self.main, t["error_title"], t["report_error"].format(error=str(e)))

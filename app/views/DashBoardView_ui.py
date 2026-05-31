@@ -71,7 +71,6 @@ class Ui_DashboardView(object):
         __qtablewidgetitem1 = QTableWidgetItem()
         self.table_score.setHorizontalHeaderItem(1, __qtablewidgetitem1)
         self.table_score.setObjectName(u"table_score")
-        self.table_score.setStyleSheet(u"background-color: #222; color: white; border: none;")
         self.table_score.setAlternatingRowColors(True)
         self.table_score.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
 
@@ -101,7 +100,6 @@ class Ui_DashboardView(object):
         __qtablewidgetitem3 = QTableWidgetItem()
         self.table_active.setHorizontalHeaderItem(1, __qtablewidgetitem3)
         self.table_active.setObjectName(u"table_active")
-        self.table_active.setStyleSheet(u"background-color: #222; color: white; border: none;")
         self.table_active.setAlternatingRowColors(True)
         self.table_active.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
 
@@ -131,7 +129,6 @@ class Ui_DashboardView(object):
         __qtablewidgetitem5 = QTableWidgetItem()
         self.table_jumps.setHorizontalHeaderItem(1, __qtablewidgetitem5)
         self.table_jumps.setObjectName(u"table_jumps")
-        self.table_jumps.setStyleSheet(u"background-color: #222; color: white; border: none;")
         self.table_jumps.setAlternatingRowColors(True)
         self.table_jumps.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
 
